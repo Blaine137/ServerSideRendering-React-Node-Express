@@ -15,7 +15,16 @@ testRouter.route('/')
     next();
 })
 .get((req, res) => {
-    res.send({express: 'backend is communicating with the client!!!!'})
+    
+    let originalData;
+    fetch('https://testingserver-49b8d.firebaseio.com/').then(res => {
+        originalData = res.json();
+    });
+    
+
+    res.send({data: data})
+    
+    // res.send({data: 'backend is communicating with the client!!!!'})
 })
 .post((req, res) => {
     res.end(`Will add the campsite`);
